@@ -25,8 +25,7 @@ app.get("/lala/:name", (req, res) => {
 
 app.get("/", (req, res) => {
   const datas = [1, 2, 3, 4, 5];
-  res.download("/index2.js");
-  res.send({ data: "Get The one" });
+  res.send({ data: datas });
   alert.log(data);
 });
 
