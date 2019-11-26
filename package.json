@@ -1,9 +1,9 @@
 {
-  "name": "hafiz",
+  "name": "akla",
   "version": "1.0.0",
   "description": "learn express",
   "main": "index.js",
-  "author": "hafiz yanuar",
+  "author": "akla akla",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
