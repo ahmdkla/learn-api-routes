@@ -4,11 +4,11 @@ const objectId = require("mongodb").ObjectId;
 module.exports = {
     getAll: (req, res) => {
         get()
-            .collection("User")
+            .collection("users")
             .find({})
             .toArray()
             .then(result => {
-                res.send({ message: "Get all datas from User", data: result });
+                res.send({ message: "Get all datas from users", data: result });
             })
             .catch(error => {
                 console.log(error);
@@ -18,11 +18,11 @@ module.exports = {
         const { id } = req.params;
 
         get()
-            .collection("User")
+            .collection("users")
             .findOne({ _id: objectId(id) })
             .then(result => {
                 res.send({
-                    message: `Get data from User with id :${id}`,
+                    message: `Get data from users with id :${id}`,
                     data: result
                 });
             })
@@ -34,11 +34,11 @@ module.exports = {
         const { id } = req.params;
 
         get()
-            .collection("User")
+            .collection("users")
             .deleteOne({ _id: objectId(id) })
             .then(result => {
                 res.send({
-                    message: `Delete data from User with id ${id}`,
+                    message: `Delete data from users with id ${id}`,
                     data: result
                 });
             })
@@ -48,11 +48,11 @@ module.exports = {
     },
     addOne: (req, res) => {
         get()
-            .collection("User")
+            .collection("users")
             .insertOne(req.body)
             .then(result => {
                 res.status(201).json({
-                    message: "Data successfully added to User",
+                    message: "Data successfully added to users",
                     data: result
                 });
             })
@@ -63,11 +63,11 @@ module.exports = {
     updateOne: (req, res) => {
         const { id } = req.params;
         get()
-            .collection("User")
+            .collection("users")
             .updateOne({ _id: objectId(id) }, { $set: req.body })
             .then(result => {
                 res.send({
-                    message: `Data from User successfully update with id ${id}`,
+                    message: `Data from users successfully update with id ${id}`,
                     data: result
                 });
             })
