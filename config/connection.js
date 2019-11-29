@@ -1,4 +1,4 @@
-const { DATABASE_HOST, DATABASE_NAME } = require("./environment");
+const { DATABASE_HOST, DATABASE_NAME, DATABASE_HOST_LIVE } = require("./environment");
 
 const MongoClient = require("mongodb").MongoClient;
 
