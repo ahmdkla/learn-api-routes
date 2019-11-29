@@ -28,7 +28,7 @@ module.exports = {
     get()
       .collection("Student")
       .deleteOne(req.body)
-      .then(deteleThis => {
+      .then(deleteThis => {
         res.send({
           message: "Delete this...",
           data: deleteThis
