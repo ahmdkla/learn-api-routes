@@ -74,8 +74,5 @@ module.exports = {
             .catch(error => {
                 console.log(error);
             });
-    },
-    login: (req,res)=>{
-        const
     }
 };
