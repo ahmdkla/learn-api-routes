@@ -15,83 +15,16 @@ module.exports = {
       });
   },
   signIn: (req, res) => {
+    const { body } = req;
     get()
       .collection("users")
-      .find(
-        {
-          email: req.body.email
-        },
-        {
-          projection: {
-            _id: 0,
-            email: 0
-          }
-        }
-      )
-      .toArray()
-      .then(result => {
-        if (result.length > 0) {
-          let item = result.find(item => {
-            return item.password === req.body.password;
-          });
-
-          if (item != null) {
-            res.send({
-              id: item.id,
-              firstName: item.firstName,
-              lastName: item.lastName
-            });
-          } else {
-            res.send({
-              message: "Email or password is wrong!"
-            });
-          }
-        } else {
-          res.send({
-            message: "Email or password is wrong!"
-          });
-        }
-      });
-  },
-  signUp: (req, res) => {
-    get()
-      .collection("users")
-      .find({
-        email: req.body.email
-      })
-      .toArray()
-      .then(result1 => {
-        if (result1.length > 0) {
-          res.send({
-            message: "Email have been used!"
-          });
-
-          return null;
-        }
-
-        get()
-          .collection("users")
-          .find({})
-          .toArray()
-          .then(result2 => {
-            get()
-              .collection("users")
-              .insertOne({
-                id: parseInt(result2.length) + 1,
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                email: req.body.email,
-                password: req.body.password
-              })
-              .then(result3 => {
-                res.send({
-                  message: "User is successfully added."
-                });
-              })
-              .catch(error => {
-                console.log(error);
-              });
-          });
+      .findOne({ email: body.email, password: body.password })
+      .then(response => {
+        const { email, firstName, _id } = response;
+        res.status(200).json({
+          message: "Login successfull",
+          data: { _id, email, firstName }
+        });
       })
       .catch(error => {
         console.log(error);
